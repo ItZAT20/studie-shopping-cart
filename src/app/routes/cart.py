@@ -106,6 +106,13 @@ def calculate_product_sum_with_discount_util(products: list[dict[str, int | str]
 
     # TODO: Implementieren eines speziellen Rabattes, der die Summe des neuen Warenkorbs berechnet
     total_price = 0
-    for price in prices:
-        total_price += price
+
+    for i in range(len(prices)):
+        discount = 0
+        for j in range(i + 1, len(prices)):
+            if prices[j] <= prices[i]:
+                discount = prices[j]
+                break
+        total_price += (prices[i] - discount)
+
     return total_price
